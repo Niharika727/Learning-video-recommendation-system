@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-learning Video Recommendation System</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      min-height: 100vh;
+      background: linear-gradient(120deg, #b2e77f 0%, #afe312 100%);
+      background-size: 200% 200%;
+      animation: gradientMove 8s ease-in-out infinite;
+      margin: 0; padding: 0; overflow-x: hidden;
+    }
+    @keyframes gradientMove {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fade-in 1s; }
+    .nav-button {
+      padding: 4px 12px; font-size: 14px;
+      background-color: rgba(221, 168, 8, 0.923);
+      color: white; border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px; cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    .nav-button:hover { background-color: rgba(56, 240, 215, 0.801); }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="w-full bg-gradient-to-r from-blue-700 to-purple-600 py-3 shadow-md mb-2">
+    <div class="container mx-auto flex items-center justify-between px-4">
+      <div class="text-center text-white text-2xl md:text-3xl font-bold tracking-wide drop-shadow-lg flex-grow">
+        <span>Video Recommendation System</span>
+      </div>
+      <div class="w-24"></div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="w-full pt-8 pb-4 px-4 md:px-0">
+    <h1 class="text-5xl md:text-7xl font-extrabold text-blue-900 drop-shadow-lg mb-4 animate-fade-in text-center" style="letter-spacing: -2px;">
+      Unlock Your Learning Journey<br>
+      <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">with AI Video Bot</span>
+    </h1>
+    <h2 class="text-2xl md:text-3xl font-semibold text-blue-700 mb-10 animate-fade-in text-center max-w-3xl mx-auto">
+      Discover, explore, and master any topic with instant, AI-powered YouTube video recommendations.<br>
+      <span class="text-purple-700 font-bold">No sign-up. No hassle. Just ask and start learning!</span>
+    </h2>
+  </header>
+
+  <!-- CTA -->
+  <div class="flex justify-center w-full mb-14 animate-fade-in">
+    <a href="{{ url_for('bot') }}" onclick="clearChatHistory()" class="inline-flex items-center gap-3 px-12 py-5 bg-gradient-to-r from-blue-600 to-purple-500 text-white font-bold rounded-full shadow-xl hover:scale-105 hover:from-purple-600 hover:to-blue-500 transition-all duration-200 text-2xl">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <polygon points="10,8 16,12 10,16" fill="white"/>
+      </svg>
+      Start Learning
+    </a>
+  </div>
+
+  <!-- Features -->
+  <section class="w-full px-4 md:px-16 py-8 animate-fade-in">
+    <h3 class="text-3xl font-bold text-blue-700 mb-4 text-center">Welcome to the Future of Learning</h3>
+    <p class="text-xl text-gray-800 mb-8 text-center max-w-4xl mx-auto">
+      E-learning Video Bot is your gateway to the world of knowledge. Instantly discover the best YouTube videos for any topic, curated by AI just for you. Whether you're a student, professional, or lifelong learner, our platform makes it easy to find high-quality, up-to-date video content on everything from Python and Data Science to Art, History, and more. No sign-up, no hassle—just ask and start learning!
+    </p>
+    <div class="flex flex-col md:flex-row gap-8 justify-center w-full">
+      <div class="flex-1 bg-white bg-opacity-70 rounded-2xl p-8 shadow text-center border border-blue-100">
+        <div class="text-4xl mb-2">🎯</div>
+        <div class="font-semibold text-blue-700 text-2xl mb-2">Personalized Topics</div>
+        <div class="text-gray-700 text-lg">Ask about Python, AI, Data Science, Art, History, and more!</div>
+      </div>
+      <div class="flex-1 bg-white bg-opacity-70 rounded-2xl p-8 shadow text-center border border-purple-100">
+        <div class="text-4xl mb-2">⚡</div>
+        <div class="font-semibold text-purple-700 text-2xl mb-2">Fast & Effortless</div>
+        <div class="text-gray-700 text-lg">Get top video picks in seconds, with a modern, interactive chat experience.</div>
+      </div>
+      <div class="flex-1 bg-white bg-opacity-70 rounded-2xl p-8 shadow text-center border border-pink-100">
+        <div class="text-4xl mb-2">💡</div>
+        <div class="font-semibold text-pink-700 text-2xl mb-2">Smart Search</div>
+        <div class="text-gray-700 text-lg">Powered by AI and the latest YouTube content, always fresh and relevant.</div>
+      </div>
+    </div>
+    <div class="mt-12 text-center text-lg text-blue-900 font-medium max-w-3xl mx-auto">
+      <span class="block mb-2">Ready to start your learning journey?</span>
+      <span class="block">Just click <span class="font-bold text-purple-700">Start Learning</span> above and ask about any topic!</span>
+    </div>
+  </section>
+
+  <footer class="mt-10 text-gray-600 text-sm text-center w-full pb-6">&copy; 2025 E-learning Video Bot. Powered by AI & YouTube.</footer>
+
+  <script>
+    // Clear chat history when home page loads
+    window.addEventListener('load', function() {
+      // Only clear if coming from another page (not a refresh)
+      if (performance.navigation.type === 0 || performance.navigation.type === 1) {
+        fetch('/clear-chat-history', {
+          method: 'POST',
+        }).catch(error => {
+          console.error('Error clearing chat history:', error);
+        });
+      }
+    });
+    
+    // Function to clear chat history when navigating to bot
+    function clearChatHistory() {
+      fetch('/clear-chat-history', {
+        method: 'POST',
+      }).catch(error => {
+        console.error('Error clearing chat history:', error);
+      });
+    }
+  </script>
+</body>
+</html>
