@@ -9,7 +9,7 @@ An AI-powered web application that recommends the best YouTube videos for any le
 - **No Sign-up Required:** Start learning immediately.
 
 ## Demo
-![Screenshot](screenshot.png) 
+![Screenshot](screenshot.jpg) 
 
 ## How It Works
 1. User selects or enters a topic.
